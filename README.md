@@ -51,15 +51,17 @@
 
 </details>
 
-- DataSet DownLoading
-   Coming Soon.
+<details>
+  <summary>Dataset DownLoading and Construction</summary>
 
-- DataSet Construction
-   Coming Soon.
+   > Coming Soon~
+
+</details>
+
 
 ### Training
 
-Coming Soon~
+> Coming Soon~
 
 - Stage I: Single-image Alignment.
   ```bash
@@ -76,7 +78,7 @@ Coming Soon~
 
 ### Evaluation
 
-Coming Soon~
+> Coming Soon~
 
 ```bash
 bash Eval.sh
@@ -93,9 +95,7 @@ bash Eval.sh
 - [LLaVA](https://github.com/haotian-liu/LLaVA): Visual Instruction Tuning (LLaVA) built towards GPT-4V level capabilities and beyond.
 
 ## Citation
-
-Coming Soon~
-
+> Coming Soon~
 
 ```
 
