@@ -82,7 +82,7 @@ bash Eval.sh
 
 ## TO DO
 
-- [ ] Release Model Evalation Code
+- [ ] Release Model Evaluation Code
 - [ ] Release Data Construction Code
 - [ ] Release Model Training Code
 
