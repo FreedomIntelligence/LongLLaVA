@@ -91,10 +91,17 @@ bash Eval.sh
 - [LLaVA](https://github.com/haotian-liu/LLaVA): Visual Instruction Tuning (LLaVA) built towards GPT-4V level capabilities and beyond.
 
 ## Citation
-> Coming Soon~
 
 ```
-
+@misc{wang2024longllavascalingmultimodalllms,
+      title={LongLLaVA: Scaling Multi-modal LLMs to 1000 Images Efficiently via Hybrid Architecture}, 
+      author={Xidong Wang and Dingjie Song and Shunian Chen and Chen Zhang and Benyou Wang},
+      year={2024},
+      eprint={2409.02889},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL},
+      url={https://arxiv.org/abs/2409.02889}, 
+}
 
 
 ```
