@@ -8,7 +8,7 @@
 
 ## 🌈 Update
 
-* **[2024.09.05]** LongLLaVA repo is published！🎉 The Code will
+* **[2024.09.05]** LongLLaVA repo is published！🎉
 
 ## Architecture
 
