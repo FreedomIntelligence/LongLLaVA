@@ -1,11 +1,7 @@
-<div style="display: flex; align-items: center;">
-    <img src="./assets/logo.png" alt="logo" style="width: 100px; height: auto; margin-right: 10px;">
-    <h1>LongLLaVA: Scaling Multi-modal LLMs to 1000 Images Efficiently via Hybrid Architecture</h1>
-</div>
+![header](./assets/header.png) 
 
 <p align="center">
    📃 <a href="" target="_blank">Paper</a> • 🌐 <a href="" target="_blank">Demo</a> • 🤗 <a href="https://huggingface.co/FreedomIntelligence/LongLLaVA" target="_blank">LongLLaVA</a> 
-   <br>  <a href=""> 中文 </a> | <a href=""> English
 </p>
 
 ![efficiency](./assets/singleGPU.png) 
