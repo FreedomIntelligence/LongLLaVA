@@ -7,7 +7,8 @@
    📃 <a href="" target="_blank">Paper</a> • 🌐 <a href="" target="_blank">Demo</a> • 🤗 <a href="https://huggingface.co/FreedomIntelligence/LongLLaVA" target="_blank">LongLLaVA</a> 
    <br>  <a href=""> 中文 </a> | <a href=""> English
 </p>
-![image-20240905084444847](./assets/image-20240905084444847.png) 
+
+![efficiency](./assets/singleGPU.png) 
 
 ## 🌈 Update
 
@@ -18,7 +19,7 @@
 <details>
   <summary>Click to view the architecture image</summary>
 
-  ![Architecture Image](./assets/image-20240905085400057.png)
+  ![Architecture Image](./assets/arch.png)
 
 </details>
 
@@ -27,9 +28,11 @@
 
 <details>
   <summary>Click to view the Results</summary>
-  ![Main Results](./assets/image-20240905085742438.png) 
-  ![Diagnostic Results](./assets/image-20240905085845606.png)
-  ![Video-NIAH](./assets/image-20240905090001712.png)
+
+  - ![Main Results](./assets/result1.png) 
+  - ![Diagnostic Results](./assets/diaresult.png)
+  - ![Video-NIAH](./assets/NIAH.png)
+
 </details>
 
 
@@ -40,11 +43,14 @@
 
 <details>
   <summary>Dataset Taxonomy</summary>
-  ![Dataset](readme.assets/image-20240905090236330.png) 
+
+  ![Dataset](readme.assets/dataset.png) 
+
 </details>
 
 <details>
   <summary>Data Construction Code</summary>
+
   Coming Soon~
 </details>
 
