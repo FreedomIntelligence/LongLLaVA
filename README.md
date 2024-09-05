@@ -7,7 +7,7 @@
    📃 <a href="" target="_blank">Paper</a> • 🌐 <a href="" target="_blank">Demo</a> • 🤗 <a href="https://huggingface.co/FreedomIntelligence/LongLLaVA" target="_blank">LongLLaVA</a> 
    <br>  <a href=""> 中文 </a> | <a href=""> English
 </p>
-![image-20240905084444847](readme.assets/image-20240905084444847.png) 
+![image-20240905084444847](./assets/image-20240905084444847.png) 
 
 ## 🌈 Update
 
