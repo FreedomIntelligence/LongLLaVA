@@ -38,13 +38,13 @@
 
 ## Results reproduction
 
-### Environment Setup
+### 1. Environment Setup
 
   ```bash
   pip install -r requirements.txt
   ```
 
-### Data DownLoad and Construction
+### 2. Data DownLoad and Construction
 
 <details>
   <summary>Dataset Taxonomy</summary>
@@ -59,7 +59,7 @@
 
 
 
-### Training
+### 3. Training
 
 
 - Stage I: Single-image Alignment.
@@ -75,7 +75,7 @@
   bash MultiImageSFT.sh
   ```
 
-### Evaluation
+### 4. Evaluation
 
 - Command Line Interface
 
@@ -97,7 +97,7 @@ print(output) # Prints the output of the model
 ```
 
 
-### Reproduce other results in Paper
+### 5. Reproduce other results in Paper
 
 - FLOPs
 ```bash
