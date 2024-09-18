@@ -44,8 +44,6 @@
   pip install -r requirements.txt
   ```
 
-
-
 ### Data DownLoad and Construction
 
 <details>
@@ -82,7 +80,7 @@
 - Command Line Interface
 
 ```bash
-  python cli.py --model_dir path-to-longllava
+python cli.py --model_dir path-to-longllava
 ```
 
 
@@ -97,6 +95,21 @@ bot = Chatbot(path-to-longllava)
 output = bot.inference(query, image_paths)
 print(output) # Prints the output of the model
 ```
+
+
+### Reproduce other results in Paper
+
+- FLOPs
+```bash
+python /utils/cal_flops.py
+```
+
+- Prefill Time & Throughput
+```bash
+python ./benchmarks/Efficiency/evaluate.py
+python ./benchmarks/Efficiency/evaluatevllm.py
+```
+
 
 ## TO DO
 
