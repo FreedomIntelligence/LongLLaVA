@@ -96,6 +96,11 @@ output = bot.inference(query, image_paths)
 print(output) # Prints the output of the model
 ```
 
+- Benchmarks
+```bash
+python Eval.sh
+```
+
 
 ### 5. Reproduce other results in Paper
 
