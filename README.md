@@ -104,7 +104,7 @@ print(output) # Prints the output of the model
 python /utils/cal_flops.py
 ```
 
-- Prefill Time & Throughput
+- Prefill Time & Throughput & GPU Memory Usage
 ```bash
 python ./benchmarks/Efficiency/evaluate.py
 python ./benchmarks/Efficiency/evaluatevllm.py
