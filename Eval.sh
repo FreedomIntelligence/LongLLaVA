@@ -2,7 +2,7 @@
 
 
 ########################## Setup model_id and checkpoint_dir ##########################
-MODLE_DIR="./ckpts/MultiSFT" # directory of the checkpoint
+MODLE_DIR="./ckpts/MultiImageSFT" # directory of the checkpoint
 patchStrategy="norm"   # [bestFit, norm]
 T=1.0
 FrameNum=128

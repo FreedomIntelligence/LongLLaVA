@@ -1,7 +1,15 @@
 #!/bin/bash
 
 export NCCL_ALGO=Tree
-experiment_name=
+export WANDB_API_KEY=""
+
+
+# pip install -U transformers accelerate
+# pip install --upgrade Pillow
+# pip install git+https://github.com/Dao-AILab/causal-conv1d
+
+
+experiment_name=SingleImageSFT
 log_folder="./logs/${experiment_name}"
 mkdir -p $log_folder
 log_name=$(date +"%m-%d_%H-%M").log

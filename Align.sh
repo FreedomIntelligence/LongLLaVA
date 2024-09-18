@@ -1,7 +1,9 @@
 #!/bin/bash
 export CUDA_LAUNCH_BLOCKING=1
+export WANDB_API_KEY=""
 
-experiment_name=
+
+experiment_name=Align
 log_folder="./logs/${experiment_name}"
 mkdir -p $log_folder
 log_name=$(date +"%m-%d_%H-%M").log

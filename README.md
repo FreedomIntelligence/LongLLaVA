@@ -38,6 +38,14 @@
 
 ## Results reproduction
 
+### Environment Setup
+
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+
+
 ### Data DownLoad and Construction
 
 <details>
@@ -47,21 +55,18 @@
 
 </details>
 
-<details>
-  <summary>Dataset DownLoading and Construction</summary>
+- Dataset DownLoading and Construction
+  > Coming Soon.
 
-   > Coming Soon~
 
-</details>
 
 
 ### Training
 
-> Coming Soon~
 
 - Stage I: Single-image Alignment.
   ```bash
-  bash Pretrain.sh
+  bash Align.sh
   ```
 - Stage II: Single-image Instruction-tuning.
   ```bash
@@ -74,17 +79,28 @@
 
 ### Evaluation
 
-> Coming Soon~
+- Command Line Interface
 
 ```bash
-bash Eval.sh
+  python cli.py --model_dir path-to-longllava
+```
+
+
+- Model Inference
+
+```python
+query = 'What does the picture show?'
+image_paths = ['image_path1'] # image or video path
+
+from cli import Chatbot
+bot = Chatbot(path-to-longllava)
+output = bot.inference(query, image_paths)
+print(output) # Prints the output of the model
 ```
 
 ## TO DO
 
-- [ ] Release Model Evalation Code
 - [ ] Release Data Construction Code
-- [ ] Release Model Training Code
 
 ## Acknowledgement
 

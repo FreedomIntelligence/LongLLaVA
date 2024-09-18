@@ -27,17 +27,15 @@ from llava.mm_utils import tokenizer_image_token, process_anyres_image, get_mode
 
 class Chatbot():
     def __init__(self, config) -> None:
-
-        # self.gen_kwargs = getattr(config, 'gen_kwargs', {None})
-
+        
         self.gen_kwargs = {
             'do_sample': False,
             'max_new_tokens': 768,
             'min_new_tokens': 1,
             'temperature': .0,
         }
-
-        self.device = 'cuda:0'
+            
+        self.device = config.device if config.device else 'cuda:0'
         self.config = config
         self.init_components()
 
@@ -48,22 +46,19 @@ class Chatbot():
 
     def init_components(self):
         d = self.config.model_dir
-
-        if 'longllava' in d.lower():
-            model_name = get_model_name_from_path(d)
-            tokenizer, model, image_processor, context_len = load_pretrained_model(d, None, model_name, False, False)
-            self.model = model
-            self.conv_mode = "jamba"
-            self.jamba_process_images = process_images
-            self.jamba_tokenizer_image_token = tokenizer_image_token
-            self.truncate_input = True
-            self.jamba_conv_templates = conv_templates
-            eos_token_id = tokenizer.eos_token_id
-            self.gen_kwargs['eos_token_id'] = eos_token_id
-            self.gen_kwargs['pad_token_id'] = tokenizer.pad_token_id if tokenizer.pad_token_id else eos_token_id
-            print(f'setting eos_token_id to {eos_token_id}')
-        else:
-            raise NotImplementedError
+        
+        model_name = get_model_name_from_path(d)
+        tokenizer, model, image_processor, context_len = load_pretrained_model(d, None, model_name, False, False)
+        self.model = model
+        self.conv_mode = "jamba"
+        self.jamba_process_images = process_images
+        self.jamba_tokenizer_image_token = tokenizer_image_token
+        self.truncate_input = True
+        self.jamba_conv_templates = conv_templates
+        eos_token_id = tokenizer.eos_token_id
+        self.gen_kwargs['eos_token_id'] = eos_token_id
+        self.gen_kwargs['pad_token_id'] = tokenizer.pad_token_id if tokenizer.pad_token_id else eos_token_id
+        print(f'setting eos_token_id to {eos_token_id}')
 
 
         model.eval()
@@ -301,6 +296,7 @@ class Chatbot():
             elif os.path.isfile(mediaItem):
                 if is_video_file(mediaItem):
                     # media is a video file path
+                    isVideo = True
                     images.extend(extract_frames(mediaItem, t, frameNum))
                     VideoFLAG = True
                 elif check_image_path_valid(mediaItem):
@@ -331,8 +327,6 @@ class Chatbot():
         if len(images):
             if 'bestFit' in self.config.patchStrategy:
                 text, images = processForBestFitPatch(text, images, patchside_length=patchside_length)
-            elif 'norm'!=self.config.patchStrategy:
-                print('Error: patchStrategy is not Impplmented')
 
 
         if images == []  and self.images == []:
@@ -383,24 +377,38 @@ class Chatbot():
             return self.chat_with_jamba(text, images, isVideo, t, frameNum, patchside_length)
         else:
             raise NotImplementedError
+        
+        
 
 
+if __name__ =="__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description='Args of Data Preprocess')
 
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--model-path", type=str, default="facebook/opt-350m")
-    parser.add_argument("--model_dir", type=str, default="facebook/opt-350m")
-    parser.add_argument("--model-base", type=str, default=None)
-    parser.add_argument("--image-file", type=str, )
-    parser.add_argument("--device", type=str, default="cuda")
-    parser.add_argument("--conv-mode", type=str, default=None)
-    parser.add_argument("--temperature", type=float, default=0.2)
-    parser.add_argument("--max-new-tokens", type=int, default=512)
-    parser.add_argument("--load-8bit", action="store_true")
-    parser.add_argument("--load-4bit", action="store_true")
-    parser.add_argument("--patchStrategy", type=str, default=None)
-    parser.add_argument("--debug", action="store_true")
+    parser.add_argument('--model_dir', default='', type=str)
+    parser.add_argument('--device', default='cuda:0', type=str)
+    parser.add_argument("--patchStrategy", type=str, default='norm', )
     args = parser.parse_args()
+
+
     bot = Chatbot(args)
-    
+
+    while True:
+        images = input('images/videos, split by ",": ')
+        images = [i.strip() for i in images.split(',') if len(i.strip()) > 1 ]
+        text = input('USER ("clear" to clear history, "q" to exit): ')
+        if text.lower() in ['q', 'quit']:
+            exit()
+
+        if text.lower() == 'clear':
+            bot.history = []
+            bot.images = []
+            continue
+
+        answer = bot.chat(images=images, text=text)
+
+        images = None # already in the history
+
+        print()
+        print(f'GPT: {answer}')
+        print()

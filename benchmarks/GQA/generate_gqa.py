@@ -11,6 +11,7 @@ from llava.conversation import conv_templates, SeparatorStyle
 from llava.utils import disable_torch_init
 from llava.mm_utils import tokenizer_image_token, process_images, get_model_name_from_path
 from torch.utils.data import Dataset, DataLoader
+from llava.eval.chatbot import Chatbot
 
 from PIL import Image
 import math
@@ -74,7 +75,6 @@ def eval_model(args):
     disable_torch_init()
     model_path = os.path.expanduser(args.model_path)
     model_name = get_model_name_from_path(model_path)
-    from llava.eval.chatbot import Chatbot
 
     args.model_dir = args.model_path
 
