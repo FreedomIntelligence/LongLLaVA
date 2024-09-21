@@ -92,7 +92,7 @@ image_paths = ['image_path1'] # image or video path
 
 from cli import Chatbot
 bot = Chatbot(path-to-longllava)
-output = bot.inference(query, image_paths)
+output = bot.chat(query, image_paths)
 print(output) # Prints the output of the model
 ```
 
