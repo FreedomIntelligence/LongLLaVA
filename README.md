@@ -1,7 +1,7 @@
 ![header](./assets/header.png) 
 
 <p align="center">
-   📃 <a href="" target="_blank">Paper</a> • 🌐 <a href="" target="_blank">Demo</a> • 🤗 <a href="https://huggingface.co/FreedomIntelligence/LongLLaVA" target="_blank">LongLLaVA</a> 
+   📃 <a href="https://arxiv.org/abs/2409.02889" target="_blank">Paper</a> • 🌐 <a href="" target="_blank">Demo</a> • 🤗 <a href="https://huggingface.co/FreedomIntelligence/LongLLaVA" target="_blank">LongLLaVA</a> 
 </p>
 
 ![efficiency](./assets/singleGPU.png) 
