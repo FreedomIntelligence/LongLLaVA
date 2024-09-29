@@ -17,7 +17,6 @@ if transformers.__version__ > '4.36':
     truncate_inputs = False
 
 import sys
-from llava.model import LlavaLlamaForCausalLM, LlavaPhiForCausalLM, LlavaPhi3ForCausalLM, LlavaStableLM_1_6bForCausalLM
 from llava.model import *
 from llava.constants import IGNORE_INDEX, IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
 from llava.conversation import conv_templates, SeparatorStyle
