@@ -3,12 +3,8 @@ import torch
 
 from PIL import Image
 
-import requests
 from PIL import Image
-from io import BytesIO
 import cv2
-from transformers import AutoTokenizer, AutoModelForCausalLM
-import pdb
 import transformers
 import numpy as np
 import os
@@ -16,8 +12,6 @@ import uuid
 if transformers.__version__ > '4.36':
     truncate_inputs = False
 
-import sys
-from llava.model import LlavaLlamaForCausalLM, LlavaPhiForCausalLM, LlavaPhi3ForCausalLM, LlavaStableLM_1_6bForCausalLM
 from llava.model import *
 from llava.constants import IGNORE_INDEX, IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
 from llava.conversation import conv_templates, SeparatorStyle
@@ -48,22 +42,19 @@ class Chatbot():
 
     def init_components(self):
         d = self.config.model_dir
-
-        if 'longllava' in d.lower():
-            model_name = get_model_name_from_path(d)
-            tokenizer, model, image_processor, context_len = load_pretrained_model(d, None, model_name, False, False)
-            self.model = model
-            self.conv_mode = "jamba"
-            self.jamba_process_images = process_images
-            self.jamba_tokenizer_image_token = tokenizer_image_token
-            self.truncate_input = True
-            self.jamba_conv_templates = conv_templates
-            eos_token_id = tokenizer.eos_token_id
-            self.gen_kwargs['eos_token_id'] = eos_token_id
-            self.gen_kwargs['pad_token_id'] = tokenizer.pad_token_id if tokenizer.pad_token_id else eos_token_id
-            print(f'setting eos_token_id to {eos_token_id}')
-        else:
-            raise NotImplementedError
+        model_name = get_model_name_from_path(d)
+        tokenizer, model, image_processor, context_len = load_pretrained_model(d, None, model_name, False, False)
+        self.model = model
+        self.conv_mode = "jamba"
+        self.jamba_process_images = process_images
+        self.jamba_tokenizer_image_token = tokenizer_image_token
+        self.truncate_input = True
+        self.jamba_conv_templates = conv_templates
+        eos_token_id = tokenizer.eos_token_id
+        self.gen_kwargs['eos_token_id'] = eos_token_id
+        self.gen_kwargs['pad_token_id'] = tokenizer.pad_token_id if tokenizer.pad_token_id else eos_token_id
+        print(f'setting eos_token_id to {eos_token_id}')
+        
 
 
         model.eval()
@@ -379,10 +370,7 @@ class Chatbot():
         text: str
         '''
 
-        if 'longllava' in self.config.model_dir.lower():
-            return self.chat_with_jamba(text, images, isVideo, t, frameNum, patchside_length)
-        else:
-            raise NotImplementedError
+        return self.chat_with_jamba(text, images, isVideo, t, frameNum, patchside_length)
 
 
 

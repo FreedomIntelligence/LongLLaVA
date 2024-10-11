@@ -2,13 +2,8 @@ import argparse
 import torch
 
 from PIL import Image
-
-import requests
 from PIL import Image
-from io import BytesIO
 import cv2
-from transformers import AutoTokenizer, AutoModelForCausalLM
-import pdb
 import transformers
 import numpy as np
 import os
@@ -19,10 +14,9 @@ if transformers.__version__ > '4.36':
 import sys
 from llava.model import *
 from llava.constants import IGNORE_INDEX, IMAGE_TOKEN_INDEX, DEFAULT_IMAGE_TOKEN, DEFAULT_IM_START_TOKEN, DEFAULT_IM_END_TOKEN
-from llava.conversation import conv_templates, SeparatorStyle
+from llava.conversation import conv_templates
 from llava.model.builder import load_pretrained_model
-from llava.utils import disable_torch_init
-from llava.mm_utils import tokenizer_image_token, process_anyres_image, get_model_name_from_path, process_images
+from llava.mm_utils import tokenizer_image_token, get_model_name_from_path, process_images
 
 class Chatbot():
     def __init__(self, config) -> None:
@@ -142,7 +136,7 @@ class Chatbot():
         return list_image_tensors
 
 
-    def chat_with_jamba(self, text: str, media=None, isVideo=False, t=1.0, frameNum=128, patchside_length=336):
+    def chat_with_jamba(self, text: str, media=None, isVideo=False, t=1.0, frameNum=128, patchside_length=336, patchStrategy='norm'):
         def extract_frames(video, t=1.0, frameNum=128):
             try:
                 cap = cv2.VideoCapture(video)
@@ -324,8 +318,10 @@ class Chatbot():
             text = text.replace('<image>', '<img><image></img>')
 
         if len(images):
-            if 'bestFit' in self.config.patchStrategy:
+            if patchStrategy=='bestFit':
                 text, images = processForBestFitPatch(text, images, patchside_length=patchside_length)
+            elif 'norm'!=patchStrategy:
+                print('Error: patchStrategy is not Impplmented')
 
 
         if images == []  and self.images == []:
@@ -366,16 +362,13 @@ class Chatbot():
 
         return answer
 
-    def chat(self, text: str, images: list[str]=None, isVideo=False, t=1.0, frameNum=128, patchside_length=336):
+    def chat(self, text: str, images: list[str]=None, isVideo=False, t=1.0, frameNum=128, patchside_length=336, patchStrategy='norm'):
         '''
         images: list[str], images for this round
         text: str
         '''
 
-        if 'longllava' in self.config.model_dir.lower():
-            return self.chat_with_jamba(text, images, isVideo, t, frameNum, patchside_length)
-        else:
-            raise NotImplementedError
+        return self.chat_with_jamba(text, images, isVideo, t, frameNum, patchside_length, patchStrategy)
         
         
 
@@ -386,8 +379,14 @@ if __name__ =="__main__":
 
     parser.add_argument('--model_dir', default='', type=str)
     parser.add_argument('--device', default='cuda:0', type=str)
-    parser.add_argument("--patchStrategy", type=str, default='norm', )
-    args = parser.parse_args()
+    parser.add_argument('--patchside_length', default=336, type=int, help="the length of the subImage for image patching")
+    parser.add_argument("--patchStrategy", type=str, default='norm', help='Strategy to apply for patching. Options include "norm", "bestFit". "Norm" means resize the Image, "bestFit" means patch the image into subImages with patchside_length*patchside_length')
+    
+    parser.add_argument('--isVideo', default=False, type=str, help="whether the input is video")
+    parser.add_argument('--frameNum', default=128, type=int, help="the maximum of frame Number for Video")
+    parser.add_argument('--t', default=1.0, type=float, help="extract frame every t seconds for video")
+    
+    args = parser.parse_args() 
 
 
     bot = Chatbot(args)
@@ -400,11 +399,17 @@ if __name__ =="__main__":
             exit()
 
         if text.lower() == 'clear':
-            bot.history = []
-            bot.images = []
+            bot.clear_history()
             continue
-
-        answer = bot.chat(images=images, text=text)
+        
+        # For normal images
+        answer = bot.chat(images=images, text=text, isVideo=args.isVideo, t=args.t, frameNum=args.frameNum, patchside_length=args.patchside_length, patchStrategy=args.patchStrategy)
+        
+        # # For Big Images with args.patchStrategy='bestFit'
+        # answer = bot.chat(images=images, text=text, patchside_length=args.patchside_length, patchStrategy=args.patchStrategy)
+        
+        # # For Video with args.isVideo=True
+        # answer = bot.chat(images=images, text=text, isVideo=args.isVideo, t=args.t, frameNum=args.frameNum)
 
         images = None # already in the history
 
