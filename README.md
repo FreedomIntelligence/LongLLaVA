@@ -62,7 +62,7 @@
 ### 3. Training
 
 - Downloading Language Models
-  <p align="center">
+  <p align="left">
    🤗 <a href="FreedomIntelligence/Jamba-9B-Instruct" target="https://huggingface.co/FreedomIntelligence/Jamba-9B-Instruct">Jamba-9B-Instruct</a> 
   </p>
 
