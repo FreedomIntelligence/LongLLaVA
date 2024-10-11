@@ -1,7 +1,7 @@
 ![header](./assets/header.png) 
 
 <p align="center">
-   📃 <a href="https://arxiv.org/abs/2409.02889" target="_blank">Paper</a> • 🌐 <a href="" target="_blank">Demo</a> • 🤗 <a href="https://huggingface.co/FreedomIntelligence/LongLLaVA" target="_blank">LongLLaVA</a> 
+   📃 <a href="https://arxiv.org/abs/2409.02889" target="_blank">Paper</a> • 🌐 <a href="" target="_blank">Demo</a> • 🤗 <a href="https://huggingface.co/FreedomIntelligence/LongLLaVA-53B-A13B" target="_blank">LongLLaVA-53B-A13B</a> • 🤗 <a href="https://huggingface.co/FreedomIntelligence/LongLLaVA-9B" target="_blank">LongLLaVA-9B</a> 
 </p>
 
 ![efficiency](./assets/singleGPU.png) 
@@ -61,6 +61,10 @@
 
 ### 3. Training
 
+- Downloading Language Models
+  <p align="center">
+   🤗 <a href="FreedomIntelligence/Jamba-9B-Instruct" target="_blank">Jamba-9B-Instruct</a> 
+  </p>
 
 - Stage I: Single-image Alignment.
   ```bash
@@ -113,6 +117,12 @@ python /utils/cal_flops.py
 ```bash
 python ./benchmarks/Efficiency/evaluate.py
 python ./benchmarks/Efficiency/evaluatevllm.py
+```
+
+- DownCycling
+To Transfer Jamba-MoE to Dense 
+```bash
+python ./utils/dense_downcycling.py
 ```
 
 
