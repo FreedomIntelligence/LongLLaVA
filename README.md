@@ -63,7 +63,7 @@
 
 - Downloading Language Models
   <p align="left">
-   🤗 <a href="FreedomIntelligence/Jamba-9B-Instruct" target="https://huggingface.co/FreedomIntelligence/Jamba-9B-Instruct">Jamba-9B-Instruct</a> 
+   🤗 <a href="https://huggingface.co/FreedomIntelligence/Jamba-9B-Instruct" target="_blank">Jamba-9B-Instruct</a> 
   </p>
 
 - Stage I: Single-image Alignment.
