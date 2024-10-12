@@ -9,7 +9,7 @@
 ## 🌈 Update
 
 * **[2024.09.05]** LongLLaVA repo is published！🎉
-* **[2024.10.12]** LongLLaVA-53B-A13B, LongLLaVA-9b and Jamba-9B-Instruct are repleased！🎉 
+* **[2024.10.12]** [LongLLaVA-53B-A13B](https://huggingface.co/FreedomIntelligence/LongLLaVA-53B-A13B), [LongLLaVA-9b](https://huggingface.co/FreedomIntelligence/LongLLaVA-9B) and [Jamba-9B-Instruct](https://huggingface.co/FreedomIntelligence/Jamba-9B-Instruct) are repleased！🎉 
 
 ## Architecture
 
